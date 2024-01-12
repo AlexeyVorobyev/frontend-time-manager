@@ -4,7 +4,7 @@ import {TTagEntity} from "../../../redux/api/types/tags.ts"
 import {AlexChip} from "../../AlexChip/AlexChip.tsx"
 import {Stack} from "@mui/material"
 import {theme} from "../../Theme/theme.ts"
-import { LinkRouterWrapper } from "../../LinkRouterWrapper/LinkRouterWrapper.tsx"
+import {LinkRouterWrapper} from "../../LinkRouterWrapper/LinkRouterWrapper.tsx"
 import {AlexCheckBox} from "../../formUtils/AlexCheckBox/AlexCheckBox.tsx"
 
 export const EventsTableColumns: ICustomDataTableColumn[] = [
@@ -37,7 +37,7 @@ export const EventsTableColumns: ICustomDataTableColumn[] = [
 		format: (value: TEventEntity) => {
 			return (
 				<Stack direction={"row"} spacing={theme.spacing(2)} alignItems={'center'}>
-					{value.tags.map((tagEntity: TTagEntity) => {
+					{value.tags?.map((tagEntity: TTagEntity) => {
 						return (<LinkRouterWrapper to={`../customization/tags/view?id=${tagEntity.tagId}`}
 												   tooltipTitle={'Перейти к тегу'}>
 							<AlexChip label={tagEntity.tagName} color={tagEntity.tagColor}/>
