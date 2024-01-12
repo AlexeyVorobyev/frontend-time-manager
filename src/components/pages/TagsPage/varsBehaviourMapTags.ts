@@ -1,4 +1,5 @@
-import {ESort} from "../../../redux/api/types/graphs";
+import {ESort} from "../../../redux/api/types/types.ts"
+
 
 export const varsBehaviourMapTags = (initialVars: any) => {
 

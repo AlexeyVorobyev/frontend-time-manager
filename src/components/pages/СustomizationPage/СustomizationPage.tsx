@@ -5,7 +5,6 @@ import {theme} from "../../Theme/theme"
 import {LinkRouterWrapper} from "../../LinkRouterWrapper/LinkRouterWrapper"
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn'
 import {AlexDialogButton} from "../../AlexDialog/AlexDialogButton"
-import {useGraphDeleteMutation} from "../../../redux/api/graphs.api"
 import {FormProvider, useForm} from "react-hook-form"
 import {EventsTable} from "../EventsPage/EventsTable.tsx"
 import {useEventDeleteMutation} from "../../../redux/api/events.api.ts"
@@ -32,7 +31,6 @@ export const CustomizationPage: FC = () => {
 	const [searchParams] = useSearchParams()
 
 	const navigate = useNavigate()
-	const [deleteGraph] = useGraphDeleteMutation()
 	const [deleteEvent] = useEventDeleteMutation()
 	const [deleteTag] = useTagDeleteMutation()
 	const customizationWrapperPageNameMap = useMemo(() => new Map([
