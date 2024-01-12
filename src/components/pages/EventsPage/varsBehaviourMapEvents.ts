@@ -22,6 +22,7 @@ export const varsBehaviourMapEvents = (initialVars: any) => {
         ...(initialVars.perPage && {perPage: Number(initialVars.perPage)}),
         // ...(initialVars.sort && {sort: resSort}),
         ...(initialVars.simpleFilter && {simpleFilter: initialVars.simpleFilter}),
+        ...(initialVars.tagFilter && {tagFilter: initialVars.tagFilter.id}),
     }
 
     console.log('DEBUG MUTATED_VARS', mutatedVars)

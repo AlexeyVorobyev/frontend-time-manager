@@ -1,5 +1,5 @@
 import React, {FC, useLayoutEffect} from "react"
-import {Box, CircularProgress, Grid, Stack} from "@mui/material"
+import {Box, CircularProgress, Grid, Stack, Typography} from "@mui/material"
 import {useFormContext} from "react-hook-form"
 import {theme} from "../../Theme/theme"
 import {AlexInputControlled} from "../../formUtils/AlexInput/AlexInputControlled.tsx"
@@ -11,6 +11,9 @@ import {AlexServerAutoComplete} from "../../formUtils/AlexServerAutocomplete/Ale
 import {useLazyTagsQuery} from "../../../redux/api/tags.api.ts"
 import {TTagEntity} from "../../../redux/api/types/tags.ts"
 import {AlexDatePickerControlled} from "../../formUtils/AlexDatePicker/AlexDatePickerControlled.tsx"
+import {formatTag} from "../../functions/formatFunctions.ts"
+import {AlexCheckBox} from "../../formUtils/AlexCheckBox/AlexCheckBox.tsx"
+import {AlexCheckBoxControlled} from "../../formUtils/AlexCheckBox/AlexCheckBoxControlled.tsx"
 
 interface IProps {
 	setOnSubmitFunc: React.Dispatch<React.SetStateAction<{ callback: ((data: any) => void) | null }>>
@@ -39,6 +42,7 @@ export const EventsForm: FC<IProps> = ({
 					console.log('query response', response)
 					const data = {
 						...response.data,
+						tags: response.data?.tags.map((tagEntity: TTagEntity) => formatTag(tagEntity)) || []
 					}
 					console.log('query after processing', data)
 					reset(data)
@@ -49,10 +53,12 @@ export const EventsForm: FC<IProps> = ({
 	const update = (data: TEventPatch) => {
 		DEBUG && console.log('data UPDATE', data)
 		updateEvent({
-			id: searchParams.get('id')!, body: {
+			id: searchParams.get('id')!,
+			body: {
 				...(data.eventDate && {eventDate: data.eventDate}),
 				...(data.eventDesc && {eventDesc: data.eventDesc}),
 				...(data.eventName && {eventName: data.eventName}),
+				...((data.eventCompletion == false || data.eventCompletion) && {eventCompletion: data.eventCompletion}),
 				...(data.tags && {tags: data.tags.map((item: any) => item.id)})
 			}
 		})
@@ -131,14 +137,9 @@ export const EventsForm: FC<IProps> = ({
 					</Grid>
 					<Grid item xs={6}>
 						<AlexServerAutoComplete name={'tags'} label={'Тэги'}
-												useLazyGetQuery={useLazyTagsQuery} multiple
+												useLazyGetQuery={useLazyTagsQuery} multiple perPage={1000}
 												optionsConfig={{
-													optionsReadFunction: (value: TTagEntity) => {
-														return {
-															id: value.tagId,
-															name: value.tagName
-														}
-													},
+													optionsReadFunction: formatTag,
 													optionsPath: ['list']
 												}}/>
 					</Grid>
@@ -146,7 +147,13 @@ export const EventsForm: FC<IProps> = ({
 						<AlexDatePickerControlled name={'eventDate'} label={'Выбор даты'} type={'dialog'}/>
 					</Grid>
 					<Grid item xs={6}>
-
+						<Stack alignItems={'center'} spacing={theme.spacing(2)} direction={'row'} height={"100%"}>
+							<Typography variant={'h6'}>Выполнение: </Typography>
+							<AlexCheckBoxControlled name={'eventCompletion'} size={30} color={{
+								outline: theme.palette.primary.dark,
+								checked: theme.palette.primary.main
+							}}/>
+						</Stack>
 					</Grid>
 					<Grid item xs={12}>
 						<AlexInputControlled name={'eventDesc'} label={'Описание'} multiline maxRows={12}

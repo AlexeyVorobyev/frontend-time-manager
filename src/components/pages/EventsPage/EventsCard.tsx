@@ -5,6 +5,10 @@ import {theme} from "../../Theme/theme"
 import {AlexDataView} from "../../formUtils/AlexDataView/AlexDataView"
 import {TEventEntity} from "../../../redux/api/types/events.ts"
 import {useEventQuery} from "../../../redux/api/events.api.ts"
+import {TTagEntity} from "../../../redux/api/types/tags.ts"
+import {AlexChip} from "../../AlexChip/AlexChip.tsx"
+import {LinkRouterWrapper} from "../../LinkRouterWrapper/LinkRouterWrapper.tsx"
+import {AlexCheckBox} from "../../formUtils/AlexCheckBox/AlexCheckBox.tsx"
 
 export const EventsCard: FC = () => {
 	const [searchParams] = useSearchParams()
@@ -55,10 +59,32 @@ export const EventsCard: FC = () => {
 								{eventData.eventDate.toString()}
 							</AlexDataView>
 						</Grid>
-						<Grid item xs={6}/>
+						<Grid item xs={6}>
+							<AlexDataView label={'Теги'}>
+								<Stack direction={"row"} spacing={theme.spacing(2)} alignItems={'center'}>
+									{eventData.tags.map((tagEntity: TTagEntity) => {
+										return (
+											<LinkRouterWrapper to={`../customization/tags/view?id=${tagEntity.tagId}`} tooltipTitle={'Перейти к тегу'}>
+												<AlexChip label={tagEntity.tagName} color={tagEntity.tagColor}/>
+											</LinkRouterWrapper>
+										)
+									})}
+								</Stack>
+							</AlexDataView>
+						</Grid>
 						<Grid item xs={12}>
 							<AlexDataView label={'Описание'}>
 								{eventData.eventDesc}
+							</AlexDataView>
+						</Grid>
+						<Grid item xs={6}>
+							<AlexDataView label={'Выполнено'}>
+								<Box maxWidth={'48px'}>
+									<AlexCheckBox value={eventData.eventCompletion} size={30} disabled color={{
+										outline:theme.palette.primary.dark,
+										checked:theme.palette.primary.main
+									}}/>
+								</Box>
 							</AlexDataView>
 						</Grid>
 					</Grid>

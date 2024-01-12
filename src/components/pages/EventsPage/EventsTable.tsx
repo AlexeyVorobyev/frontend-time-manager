@@ -36,9 +36,9 @@ export const EventsTable: FC = () => {
 					   perPageOptions={PER_PAGE_OPTIONS}
 					   availableElements={result?.currentData?.totalElements}
 					   columnsSelect simpleFilter footer downloadCSV
-			// filterListIds={[
-			//
-			// ]}
+					   filterListIds={[
+						   'tagFilter'
+					   ]}
 					   serverSideOptions={serverSideOptions}
 					   setServerSideOptions={setServerSideOptions}
 					   actionsConfig={{

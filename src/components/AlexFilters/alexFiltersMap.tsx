@@ -1,4 +1,7 @@
 import {ReactElement} from "react";
+import {AlexServerAutoComplete} from "../formUtils/AlexServerAutocomplete/AlexServerAutoComplete.tsx"
+import {useLazyTagsQuery} from "../../redux/api/tags.api.ts"
+import {formatTag} from "../functions/formatFunctions.ts"
 
 export interface IAlexFilter {
     label: string,
@@ -6,18 +9,15 @@ export interface IAlexFilter {
 }
 
 export const alexFiltersMap: Map<string, IAlexFilter> = new Map([
-    // ['universityGrade', {
-    //     label: 'Вид учебного заведения',
-    //     component: <AlexToggle name={'universityGrade'}
-    //                            options={
-    //                                Object.values(EGrade).map((item) => {
-    //                                    return {
-    //                                        id: item,
-    //                                        name: parseEGradeToRusName(item)
-    //                                    }
-    //                                })
-    //                            }/>
-    // }],
+    ['tagFilter', {
+        label: 'Тег',
+        component: <AlexServerAutoComplete name={'tagFilter'} label={'Тэги'}
+                                           useLazyGetQuery={useLazyTagsQuery} perPage={1000}
+                                           optionsConfig={{
+                                               optionsReadFunction: formatTag,
+                                               optionsPath: ['list']
+                                           }}/>
+    }],
     // ['userRole', {
     //     label: 'Роль пользователя',
     //     component: <AlexToggle name={'userRole'}

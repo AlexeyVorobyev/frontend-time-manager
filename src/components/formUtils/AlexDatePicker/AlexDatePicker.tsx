@@ -6,7 +6,7 @@ import {FormControl} from "@mui/material"
 
 interface IProps {
 	value: string,
-	onChange: any
+	onChange: (...events:any) => void
 	label: string,
 	type: any
 }

@@ -1,3 +1,5 @@
+import {TTagEntity} from "./tags.ts"
+
 export type TEventsPayload = {
 	page?: number
 	perPage?: number
@@ -8,14 +10,16 @@ export type TEventPost = {
 	eventName: string,
 	eventDesc: string,
 	eventDate: Date,
-	tags: string[]
+	tags: string[],
+	eventCompletion: boolean
 }
 
 export type TEventPatch = {
 	eventName?: string,
 	eventDesc?: string,
 	eventDate?: Date,
-	tags?: string[]
+	tags?: string[],
+	eventCompletion?: boolean
 }
 
 export type TEventEntity = {
@@ -23,7 +27,8 @@ export type TEventEntity = {
 	eventName: string,
 	eventDesc: string,
 	eventDate: Date,
-	tags: string[]
+	tags: TTagEntity[],
+	eventCompletion: boolean
 }
 
 export type TEventsResponse = {

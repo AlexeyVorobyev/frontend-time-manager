@@ -39,10 +39,14 @@ const UserPanel:FC = () => {
                 }}
             >
                 <Paper elevation={3} sx={{padding: '10px'}}>
-                    <Stack direction={'column'} spacing={theme.spacing(1)}>
+                    <Stack direction={'column'} spacing={theme.spacing(1)} alignItems={'center'}>
                         <Typography variant={'subtitle1'}>Выйти из аккаунта?</Typography>
                         <Stack direction={'row'} spacing={theme.spacing(1)}>
                             <Button size={'large'}
+                                    sx={{
+                                        width:'80px',
+                                    }}
+                                    color={'error'}
                                     onClick={() => {
                                         localStorage.clear()
                                         location.reload()
@@ -51,8 +55,12 @@ const UserPanel:FC = () => {
                                 Да
                             </Button>
                             <Button size={'large'}
+                                    sx={{
+                                        width:'80px',
+                                    }}
+                                    color={'neutral'}
                                     onClick={() => setOpenButtonPopover(false)}
-                                    variant="contained">
+                                    variant="outlined">
                                 Нет
                             </Button>
                         </Stack>

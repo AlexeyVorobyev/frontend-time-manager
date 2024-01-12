@@ -60,7 +60,7 @@ export const routesList: IRoute[] = [
     },
     {
         path: `customization/tags/${EPageType.view}`,
-        name: 'Событие тегов',
+        name: 'Тег',
         component: <CustomizationPage/>
     },
     {
