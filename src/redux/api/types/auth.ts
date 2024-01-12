@@ -7,6 +7,10 @@ export type TSignInResponse = {
 
 export type TRefreshResponse = TSignInResponse
 
+export type TRefreshPayload = {
+    refreshToken: string
+}
+
 export type TSignInPayload = {
     email: string,
     password: string

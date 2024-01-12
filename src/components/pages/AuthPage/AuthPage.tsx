@@ -1,7 +1,7 @@
 import React from "react"
 import {FormProvider, useForm} from "react-hook-form"
 import {Button, Divider, Grid, Paper, Stack, Typography} from "@mui/material"
-import {AlexInput, EInputType} from "../../formUtils/AlexInput/AlexInput"
+import {AlexInputControlled, EInputType} from "../../formUtils/AlexInput/AlexInputControlled.tsx"
 import {theme} from "../../Theme/theme.ts"
 import {LinkRouterWrapper} from "../../LinkRouterWrapper/LinkRouterWrapper.tsx"
 import {useSignInMutation} from "../../../redux/api/auth.api.ts"
@@ -35,15 +35,15 @@ export const AuthPage: React.FC<any> = () => {
 					<FormProvider {...methods} >
 						<Stack spacing={theme.spacing(2)}>
 							<Stack direction={'column'} justifyContent={'center'} spacing={theme.spacing(2)}>
-								<AlexInput name={'email'} required label={'Почта'}
-										   inputType={EInputType.email}
-										   error={Boolean(errors.email)}
-										   errorText={errors.email?.message as string | undefined}/>
+								<AlexInputControlled name={'email'} required label={'Почта'}
+													 inputType={EInputType.email}
+													 error={Boolean(errors.email)}
+													 errorText={errors.email?.message as string | undefined}/>
 
-								<AlexInput name={'password'} required label={'Пароль'} hidden
-										   inputType={EInputType.password}
-										   error={Boolean(errors.password)}
-										   errorText={errors.password?.message as string | undefined}/>
+								<AlexInputControlled name={'password'} required label={'Пароль'} hidden
+													 inputType={EInputType.password}
+													 error={Boolean(errors.password)}
+													 errorText={errors.password?.message as string | undefined}/>
 
 								<Button size={'large'} variant="contained"
 										onClick={handleSubmit(onSubmit)}>ВОЙТИ</Button>

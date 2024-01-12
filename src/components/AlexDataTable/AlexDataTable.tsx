@@ -47,9 +47,9 @@ export interface IActionsConfig {
 
 interface IProps {
     columns: ICustomDataTableColumn[],
-    data: Object[]
+    data?: Object[]
     actionsConfig?: IActionsConfig
-    availablePages: number,
+    availablePages?: number,
     availableElements?: number
     perPageOptions?: string[]
     simpleFilter?: boolean
@@ -71,15 +71,15 @@ export enum EFormatFlatDataMode {
 
 export const formatFlatData = (
     columns: ICustomDataTableColumn[],
-    data: Object[],
-    mode: `${EFormatFlatDataMode}`
+    mode: `${EFormatFlatDataMode}`,
+    data?: Object[],
 ): ICustomDataTableRow[] | null => {
     if (!data) return null
     const resultArr = []
     for (const item of data) {
         const resultFlatRow = new Map()
         for (const column of columns) {
-            if (!item.hasOwnProperty(column.id)) continue
+            if (!item.hasOwnProperty(column.id) && !Boolean(column.format)) continue
             if (mode === EFormatFlatDataMode.jsx) {
                 if (typeof item[column.id as keyof Object] !== 'string' || column.format) {
                     if (!column.format) continue
@@ -129,7 +129,7 @@ export const AlexDataTable: FC<IProps> = ({
         sessionStorage.setItem(`columnsDataBase${location.pathname}`, JSON.stringify(columnsState))
     }, [columnsState])
 
-    const rows = useMemo(() => formatFlatData(columns, data, EFormatFlatDataMode.jsx), [columns, data])
+    const rows = useMemo(() => formatFlatData(columns,EFormatFlatDataMode.jsx, data), [columns, data])
     const navigate = useNavigate()
 
     return (

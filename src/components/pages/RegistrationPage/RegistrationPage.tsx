@@ -1,7 +1,7 @@
 import React from "react"
 import {FormProvider, useForm} from "react-hook-form"
 import {Button, Divider, Grid, Paper, Stack, Typography} from "@mui/material"
-import {AlexInput, EInputType} from "../../formUtils/AlexInput/AlexInput"
+import {AlexInputControlled, EInputType} from "../../formUtils/AlexInput/AlexInputControlled.tsx"
 import {validEmail, validPassword} from "../../formUtils/Regex/regex.ts"
 import {theme} from "../../Theme/theme.ts"
 import {LinkRouterWrapper} from "../../LinkRouterWrapper/LinkRouterWrapper.tsx"
@@ -42,33 +42,33 @@ export const RegistrationPage: React.FC<any> = () => {
 					<FormProvider {...methods} >
 						<Stack direction={'column'} justifyContent={'center'} spacing={theme.spacing(2)}>
 							<Stack direction={'column'} justifyContent={'center'} spacing={theme.spacing(2)}>
-								<AlexInput name={'email'} required label={'Почта'}
-										   inputType={EInputType.email}
-										   error={Boolean(errors.email)}
-										   errorText={errors.email?.message as string | undefined}
-										   validateFunctions={{
+								<AlexInputControlled name={'email'} required label={'Почта'}
+													 inputType={EInputType.email}
+													 error={Boolean(errors.email)}
+													 errorText={errors.email?.message as string | undefined}
+													 validateFunctions={{
 											   regex: (valueToCheck: string) => (validEmail.test(valueToCheck)) || 'Некорректный формат почты'
 										   }}
 								/>
 
-								<AlexInput name={'password'} required label={'Пароль'} hidden
-										   inputType={EInputType.password}
-										   error={Boolean(errors.password)}
-										   errorText={errors.password?.message as string | undefined}
-										   validateFunctions={{
+								<AlexInputControlled name={'password'} required label={'Пароль'} hidden
+													 inputType={EInputType.password}
+													 error={Boolean(errors.password)}
+													 errorText={errors.password?.message as string | undefined}
+													 validateFunctions={{
 											   regex: (valueToCheck: string) => (validPassword.test(valueToCheck)) || '8 символов, заглавная и строчная буква'
 										   }}
 								/>
 
-								<AlexInput name={'passwordCheck'} required
-										   label={'Повторите пароль'} hidden
-										   inputType={EInputType.password}
-										   validateFunctions={{
+								<AlexInputControlled name={'passwordCheck'} required
+													 label={'Повторите пароль'} hidden
+													 inputType={EInputType.password}
+													 validateFunctions={{
 											   passwordCheck: (valueToCheck: string) => (valueToCheck === passwordWatch) || 'Пароли не совпадают',
 											   regex: (valueToCheck: string) => (validPassword.test(valueToCheck)) || 'Пароль должен содержать 8 символов, заглавную и строчную букву'
 										   }}
-										   error={Boolean(errors.passwordCheck)}
-										   errorText={errors.passwordCheck?.message as string | undefined}/>
+													 error={Boolean(errors.passwordCheck)}
+													 errorText={errors.passwordCheck?.message as string | undefined}/>
 
 								<Button size={'large'} variant="contained"
 										onClick={handleSubmit(onSubmit)}>ЗАРЕГЕСТРИРОВАТЬСЯ</Button>

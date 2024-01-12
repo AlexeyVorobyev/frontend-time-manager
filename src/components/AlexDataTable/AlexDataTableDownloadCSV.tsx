@@ -6,7 +6,7 @@ import {EFormatFlatDataMode, formatFlatData, ICustomDataTableColumn, ICustomData
 interface IProps {
     columnsState: ICustomDataTableColumn[]
     columns: ICustomDataTableColumn[]
-    data: Object[]
+    data?: Object[]
 }
 
 const constructCsv = (
@@ -54,7 +54,7 @@ export const AlexDataTableDownloadCSV: FC<IProps> = ({
                                                          columns
                                                      }) => {
 
-    const rows = useMemo(() => formatFlatData(columns, data, EFormatFlatDataMode.text), [data, columnsState])
+    const rows = useMemo(() => formatFlatData(columns,EFormatFlatDataMode.text, data), [data, columnsState])
 
     const handleClick = useCallback(() => {
         DEBUG && console.debug('rows', rows)

@@ -1,40 +1,42 @@
 import {api, constructQueryString} from './api'
-import {IEventPostPutPayload, IEventsPayload} from "./types/events";
+import {TEventEntity, TEventPatch, TEventPost, TEventsPayload, TEventsResponse} from "./types/events.ts"
+import {TEntityWithId} from "./types/types.ts"
+import {GLOBAL_CONFIG} from "../../globalConfig.ts"
 
 export const eventsApi = api.injectEndpoints({
 	endpoints: (builder) => ({
-		events: builder.query<any, IEventsPayload>({
+		events: builder.query<TEventsResponse, TEventsPayload>({
 			query: (settings) => ({
-				url: '/event' + constructQueryString(settings),
+				url: `${GLOBAL_CONFIG.apiEventServiceAddress}/timemanager/event` + constructQueryString(settings),
 				method: 'GET',
 			}),
 			providesTags: ['events']
 		}),
-		event: builder.query<any, { id: string }>({
+		event: builder.query<TEventEntity, TEntityWithId>({
 			query: (settings) => ({
-				url: `/event/${settings.id}`,
+				url: `${GLOBAL_CONFIG.apiEventServiceAddress}/timemanager/event/${settings.id}`,
 				method: 'GET',
 			}),
 			providesTags: ['events']
 		}),
-		eventDelete: builder.mutation<any, { id: string }>({
+		eventDelete: builder.mutation<undefined, TEntityWithId>({
 			query: (settings) => ({
-				url: `/event/${settings.id}`,
+				url: `${GLOBAL_CONFIG.apiEventServiceAddress}/timemanager/event/${settings.id}`,
 				method: 'DELETE',
 			}),
 			invalidatesTags: ['events']
 		}),
-		eventPost: builder.mutation<any, { body: IEventPostPutPayload }>({
+		eventPost: builder.mutation<undefined, { body: TEventPost }>({
 			query: (settings) => ({
-				url: `/event`,
+				url: `${GLOBAL_CONFIG.apiEventServiceAddress}/timemanager/event`,
 				method: 'POST',
 				body: settings.body
 			}),
 			invalidatesTags: ['events']
 		}),
-		eventPatch: builder.mutation<any, { id: string, body: IEventPostPutPayload  }>({
+		eventPatch: builder.mutation<undefined, TEntityWithId & {body: TEventPatch }>({
 			query: (settings) => ({
-				url: `/event/${settings.id}`,
+				url: `${GLOBAL_CONFIG.apiEventServiceAddress}/timemanager/event/${settings.id}`,
 				method: 'PATCH',
 				body: settings.body
 			}),

@@ -1,13 +1,15 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 import {IGraphsPayload} from "./types/graphs";
 import {getTokensAndExpiry} from "../../components/functions/authTokenAndExpiry.ts"
+import {TRefreshResponse} from "./types/auth.ts"
+import {GLOBAL_CONFIG} from "../../globalConfig.ts"
 
 const disabledAuthTokenEndpoints = [
     'signIn','signUp','refresh'
 ]
 export const api = createApi({
     reducerPath: 'api',
-    tagTypes: ['graphs','events'],
+    tagTypes: ['graphs','events','tags'],
     baseQuery: fetchBaseQuery({
         prepareHeaders: (headers, api) => {
             if (disabledAuthTokenEndpoints.includes(api.endpoint)) {

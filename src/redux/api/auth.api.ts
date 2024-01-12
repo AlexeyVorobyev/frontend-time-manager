@@ -1,6 +1,13 @@
 import {api} from './api'
 import {GLOBAL_CONFIG} from "../../globalConfig.ts"
-import {TMeResponse, TRefreshResponse, TSignInPayload, TSignInResponse, TSignUpPayload} from "./types/auth.ts"
+import {
+	TMeResponse,
+	TRefreshPayload,
+	TRefreshResponse,
+	TSignInPayload,
+	TSignInResponse,
+	TSignUpPayload
+} from "./types/auth.ts"
 import {getTokensAndExpiry} from "../../components/functions/authTokenAndExpiry.ts"
 
 export const authApi = api.injectEndpoints({
@@ -25,13 +32,12 @@ export const authApi = api.injectEndpoints({
                 body
             }),
         }),
-        refresh: builder.mutation<TRefreshResponse, undefined>({
+        refresh: builder.mutation<TRefreshResponse, TRefreshPayload>({
             query: (body) => ({
                 url: `${GLOBAL_CONFIG.apiAuthServiceAddress}/auth/refresh`,
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${getTokensAndExpiry().refreshToken}`
                 },
                 body
             }),
@@ -50,5 +56,6 @@ export const {
 	useSignInMutation,
     useSignUpMutation,
     useRefreshMutation,
-	useMeQuery
+	useMeQuery,
+	endpoints: authEndpoints
 } = authApi

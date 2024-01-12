@@ -1,22 +1,38 @@
 import {ICustomDataTableColumn} from "../../AlexDataTable/AlexDataTable";
+import {TEventEntity} from "../../../redux/api/types/events.ts"
 
-export const GraphsTableColumns: ICustomDataTableColumn[] = [
+export const EventsTableColumns: ICustomDataTableColumn[] = [
     {
-        id: 'id',
-        label: 'id',
-        display: false
+        id: 'eventId',
+        label: 'ID',
+        format: (value: TEventEntity) => value.eventId.toString(),
+        display: false,
+        sort: false
     },
     {
-        id: 'name',
+        id: 'eventName',
         label: 'Название',
+        sort: false
     },
     {
-        id: 'creationDate',
-        label: 'Дата создания',
+        id: 'eventDesc',
+        label: 'Описание',
+        sort: false
     },
     {
-        id: 'updateDate',
-        label: 'Дата изменения',
+        id: 'eventDate',
+        label: 'Дата',
+        sort: false
     },
+    {
+        id: 'tags',
+        label: 'Тэги',
+        sort: false,
+        format: (value:TEventEntity) => {
+            return value.tags.map((tagId) => {
+                return tagId
+            })
+        }
+    }
 ]
 

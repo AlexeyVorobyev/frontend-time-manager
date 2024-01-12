@@ -22,6 +22,58 @@ export const routesList: IRoute[] = [
         component: <CabinetPage/>
     },
 
+    {
+        path: `customization/events`,
+        name: 'События',
+        component: <Navigate to={`/customization/events/${EPageType.table}`}/>
+    },
+    {
+        path: `customization/events/${EPageType.table}`,
+        name: 'Таблица событий',
+        component: <CustomizationPage/>
+    },
+    {
+        path: `customization/events/${EPageType.view}`,
+        name: 'Событие',
+        component: <CustomizationPage/>
+    },
+    {
+        path: `customization/events/${EPageType.edit}`,
+        name: 'Настройка события',
+        component: <CustomizationPage/>
+    },
+    {
+        path: `customization/events/${EPageType.add}`,
+        name: 'Добавление события',
+        component: <CustomizationPage/>
+    },
+
+    {
+        path: `customization/tags`,
+        name: 'Теги',
+        component: <Navigate to={`/customization/tags/${EPageType.table}`}/>
+    },
+    {
+        path: `customization/tags/${EPageType.table}`,
+        name: 'Таблица тегов',
+        component: <CustomizationPage/>
+    },
+    {
+        path: `customization/tags/${EPageType.view}`,
+        name: 'Событие тегов',
+        component: <CustomizationPage/>
+    },
+    {
+        path: `customization/tags/${EPageType.edit}`,
+        name: 'Настройка тега',
+        component: <CustomizationPage/>
+    },
+    {
+        path: `customization/tags/${EPageType.add}`,
+        name: 'Добавление тега',
+        component: <CustomizationPage/>
+    },
+
     // {
     //     path: `customization/graphs`,
     //     name: 'Графы',

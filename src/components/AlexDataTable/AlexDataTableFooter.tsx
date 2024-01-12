@@ -4,7 +4,7 @@ import {theme} from "../Theme/theme";
 import {booleanNumber} from "../functions/booleanNumber";
 
 interface IProps {
-    availablePages: number
+    availablePages?: number
     perPageOptions: string[]
     availableElements?: number
     serverSideOptions: Map<string, any>
@@ -20,7 +20,7 @@ export const AlexDataTableFooter: FC<IProps> = ({
                                                 }) => {
     const [page, setPage] = useState<string | null>(serverSideOptions.get('page') || '0');
     const [perPage, setPerPage] = useState<string | null>(serverSideOptions.get('perPage') || '8')
-    const savedAvailablePages = useRef<string | null>(booleanNumber(availablePages) ? availablePages.toString() : null)
+    const savedAvailablePages = useRef<string | null>(booleanNumber(availablePages) ? availablePages!.toString() : null)
     const savedAvailableElements = useRef<string | null>(booleanNumber(availableElements) ? availableElements!.toString() : null)
 
     useLayoutEffect(() => {
@@ -28,7 +28,7 @@ export const AlexDataTableFooter: FC<IProps> = ({
         if (availablePages !== Number(savedAvailablePages.current) && savedAvailablePages.current) {
             setPage('0')
         }
-        savedAvailablePages.current = availablePages.toString()
+        savedAvailablePages.current = availablePages!.toString()
     }, [availablePages])
 
     useLayoutEffect(() => {

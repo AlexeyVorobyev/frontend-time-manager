@@ -16,7 +16,7 @@ interface IProps {
     serverSideOptions: Map<string, any>
     setServerSideOptions: React.Dispatch<React.SetStateAction<Map<string, any>>>
     downloadCSV: boolean
-    data: Object[]
+    data?: Object[]
     columns: ICustomDataTableColumn[]
 }
 

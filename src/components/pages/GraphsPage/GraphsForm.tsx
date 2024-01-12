@@ -2,7 +2,7 @@ import React, {FC, useLayoutEffect} from "react";
 import {Box, CircularProgress, Grid, Paper, Stack} from "@mui/material";
 import {useFormContext} from "react-hook-form";
 import {theme} from "../../Theme/theme";
-import {AlexInput} from "../../formUtils/AlexInput/AlexInput";
+import {AlexInputControlled} from "../../formUtils/AlexInput/AlexInputControlled.tsx";
 import {useGraphPatchMutation, useGraphPostMutation, useLazyGraphQuery} from "../../../redux/api/graphs.api";
 import {IGraphPostPutPayload} from "../../../redux/api/types/graphs";
 import {useNavigate, useSearchParams} from "react-router-dom";
@@ -110,9 +110,9 @@ export const GraphsForm: FC<IProps> = ({
             <Stack direction={'column'} height={'100%'} rowGap={theme.spacing(2)}>
                 <Grid container spacing={theme.spacing(2)}>
                     <Grid item xs={6} lg={4}>
-                        <AlexInput name={'name'} label={'Название'}
-                                   error={Boolean(errors.title)} required
-                                   errorText={errors.title?.message as string | undefined}/>
+                        <AlexInputControlled name={'name'} label={'Название'}
+											 error={Boolean(errors.title)} required
+											 errorText={errors.title?.message as string | undefined}/>
                     </Grid>
                 </Grid>
                 <Paper elevation={3} sx={{
