@@ -132,8 +132,8 @@ export const EventsForm: FC<IProps> = ({
 				<Grid container spacing={theme.spacing(2)}>
 					<Grid item xs={6}>
 						<AlexInputControlled name={'eventName'} label={'Название'}
-											 error={Boolean(errors.title)} required
-											 errorText={errors.title?.message as string | undefined}/>
+											 error={Boolean(errors.eventName)} required
+											 errorText={errors.eventName?.message as string | undefined}/>
 					</Grid>
 					<Grid item xs={6}>
 						<AlexServerAutoComplete name={'tags'} label={'Тэги'}
@@ -144,7 +144,7 @@ export const EventsForm: FC<IProps> = ({
 												}}/>
 					</Grid>
 					<Grid item xs={6}>
-						<AlexDatePickerControlled name={'eventDate'} label={'Выбор даты'} type={'dialog'}/>
+						<AlexDatePickerControlled name={'eventDate'} label={'Выбор даты'}/>
 					</Grid>
 					<Grid item xs={6}>
 						<Stack alignItems={'center'} spacing={theme.spacing(2)} direction={'row'} height={"100%"}>
@@ -157,7 +157,7 @@ export const EventsForm: FC<IProps> = ({
 					</Grid>
 					<Grid item xs={12}>
 						<AlexInputControlled name={'eventDesc'} label={'Описание'} multiline maxRows={12}
-											 error={Boolean(errors.title)} required
+											 error={Boolean(errors.title)}
 											 errorText={errors.title?.message as string | undefined}/>
 					</Grid>
 				</Grid>

@@ -8,14 +8,12 @@ interface IProps {
 	value: string,
 	onChange: (...events:any) => void
 	label: string,
-	type: any
 }
 
 export const AlexDatePicker: FC<IProps> = ({
 											   value,
 											   onChange,
 											   label,
-											   type = 'dialog'
 										   }) => {
 	return (
 		<FormControl fullWidth>
