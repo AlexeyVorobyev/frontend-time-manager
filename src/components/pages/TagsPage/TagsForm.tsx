@@ -211,7 +211,7 @@ export const TagsForm: FC<IProps> = ({
 					</Grid>
 					<Grid item xs={12}>
 						<AlexInputControlled name={'tagDesc'} label={'Описание'} multiline maxRows={12}
-											 error={Boolean(errors.title)} required
+											 error={Boolean(errors.title)}
 											 errorText={errors.title?.message as string | undefined}/>
 					</Grid>
 				</Grid>

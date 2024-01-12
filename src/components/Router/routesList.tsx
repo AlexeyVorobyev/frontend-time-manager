@@ -73,32 +73,6 @@ export const routesList: IRoute[] = [
         name: 'Добавление тега',
         component: <CustomizationPage/>
     },
-
-    // {
-    //     path: `customization/graphs`,
-    //     name: 'Графы',
-    //     component: <Navigate to={`/customization/graphs/${EPageType.table}`}/>
-    // },
-    // {
-    //     path: `customization/graphs/${EPageType.table}`,
-    //     name: 'Таблица графов',
-    //     component: <CustomizationPage/>
-    // },
-    // {
-    //     path: `customization/graphs/${EPageType.view}`,
-    //     name: 'Граф',
-    //     component: <CustomizationPage/>
-    // },
-    // {
-    //     path: `customization/graphs/${EPageType.edit}`,
-    //     name: 'Настройка графа',
-    //     component: <CustomizationPage/>
-    // },
-    // {
-    //     path: `customization/graphs/${EPageType.add}`,
-    //     name: 'Добавление графа',
-    //     component: <CustomizationPage/>
-    // },
 ]
 
 const mapRoutesListPaths = (routesList: IRoute[]): string[] => {

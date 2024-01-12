@@ -56,13 +56,13 @@ export const EventsCard: FC = () => {
 						</Grid>
 						<Grid item xs={6}>
 							<AlexDataView label={'Дата создания'}>
-								{eventData.eventDate.toString()}
+								{eventData.eventDate?.toString()}
 							</AlexDataView>
 						</Grid>
 						<Grid item xs={6}>
 							<AlexDataView label={'Теги'}>
 								<Stack direction={"row"} spacing={theme.spacing(2)} alignItems={'center'}>
-									{eventData.tags.map((tagEntity: TTagEntity) => {
+									{eventData.tags?.map((tagEntity: TTagEntity) => {
 										return (
 											<LinkRouterWrapper to={`../customization/tags/view?id=${tagEntity.tagId}`} tooltipTitle={'Перейти к тегу'}>
 												<AlexChip label={tagEntity.tagName} color={tagEntity.tagColor}/>

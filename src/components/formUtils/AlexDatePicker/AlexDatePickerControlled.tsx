@@ -1,15 +1,17 @@
 import {FC} from "react"
 import {Controller, useFormContext} from "react-hook-form"
-import {AlexDatePicker} from "./AlexDatePicker.tsx"
+import {AlexDatePicker, EDatePickerType} from "./AlexDatePicker.tsx"
 
 interface IProps {
 	name: string
 	label: string,
+	type?: EDatePickerType | `${EDatePickerType}`
 }
 
 export const AlexDatePickerControlled: FC<IProps> = ({
 														 name,
 														 label,
+														 type = EDatePickerType.date
 													 }) => {
 	const {control} = useFormContext()
 
@@ -19,7 +21,7 @@ export const AlexDatePickerControlled: FC<IProps> = ({
 			control={control}
 			render={({field: {onChange, value}}) => {
 				return <AlexDatePicker value={value} onChange={onChange}
-									   label={label}/>
+									   label={label} type={type}/>
 			}}/>
 	)
 }

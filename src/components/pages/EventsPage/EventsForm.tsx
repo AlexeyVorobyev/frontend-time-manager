@@ -12,8 +12,8 @@ import {useLazyTagsQuery} from "../../../redux/api/tags.api.ts"
 import {TTagEntity} from "../../../redux/api/types/tags.ts"
 import {AlexDatePickerControlled} from "../../formUtils/AlexDatePicker/AlexDatePickerControlled.tsx"
 import {formatTag} from "../../functions/formatFunctions.ts"
-import {AlexCheckBox} from "../../formUtils/AlexCheckBox/AlexCheckBox.tsx"
 import {AlexCheckBoxControlled} from "../../formUtils/AlexCheckBox/AlexCheckBoxControlled.tsx"
+import {EDatePickerType} from "../../formUtils/AlexDatePicker/AlexDatePicker.tsx"
 
 interface IProps {
 	setOnSubmitFunc: React.Dispatch<React.SetStateAction<{ callback: ((data: any) => void) | null }>>
@@ -42,7 +42,7 @@ export const EventsForm: FC<IProps> = ({
 					console.log('query response', response)
 					const data = {
 						...response.data,
-						tags: response.data?.tags.map((tagEntity: TTagEntity) => formatTag(tagEntity)) || []
+						tags: response.data?.tags?.map((tagEntity: TTagEntity) => formatTag(tagEntity)) || []
 					}
 					console.log('query after processing', data)
 					reset(data)
@@ -144,7 +144,7 @@ export const EventsForm: FC<IProps> = ({
 												}}/>
 					</Grid>
 					<Grid item xs={6}>
-						<AlexDatePickerControlled name={'eventDate'} label={'Выбор даты'}/>
+						<AlexDatePickerControlled name={'eventDate'} label={'Выбор даты'} type={EDatePickerType.dateTime}/>
 					</Grid>
 					<Grid item xs={6}>
 						<Stack alignItems={'center'} spacing={theme.spacing(2)} direction={'row'} height={"100%"}>

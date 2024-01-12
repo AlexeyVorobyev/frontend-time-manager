@@ -7,9 +7,6 @@ import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn'
 import {AlexDialogButton} from "../../AlexDialog/AlexDialogButton"
 import {useGraphDeleteMutation} from "../../../redux/api/graphs.api"
 import {FormProvider, useForm} from "react-hook-form"
-import {GraphsTable} from "../GraphsPage/GraphsTable"
-import {GraphsCard} from "../GraphsPage/GraphsCard"
-import {GraphsForm} from "../GraphsPage/GraphsForm"
 import {EventsTable} from "../EventsPage/EventsTable.tsx"
 import {useEventDeleteMutation} from "../../../redux/api/events.api.ts"
 import {EventsCard} from "../EventsPage/EventsCard.tsx"
@@ -39,37 +36,6 @@ export const CustomizationPage: FC = () => {
 	const [deleteEvent] = useEventDeleteMutation()
 	const [deleteTag] = useTagDeleteMutation()
 	const customizationWrapperPageNameMap = useMemo(() => new Map([
-		['graphs',
-			{
-				deleteQuery: (id: string) => {
-					deleteGraph({id: id})
-						.then(() => {
-							if (searchParams.get('from')) {
-								navigate(JSON.parse(searchParams.get('from')!))
-							} else {
-								navigate('./../table')
-							}
-						})
-				},
-				[EPageType.table]: {
-					component: <GraphsTable/>,
-					title: 'графов',
-					button: 'новый граф'
-				},
-				[EPageType.view]: {
-					component: <GraphsCard/>,
-					button: 'граф'
-				},
-				[EPageType.add]: {
-					component: GraphsForm,
-					title: 'графа'
-				},
-				[EPageType.edit]: {
-					component: GraphsForm,
-					title: 'графа'
-				},
-			}
-		],
 		['events',
 			{
 				deleteQuery: (id: string) => {

@@ -8,9 +8,9 @@ export type TEventsPayload = {
 
 export type TEventPost = {
 	eventName: string,
-	eventDesc: string,
-	eventDate: Date,
-	tags: string[],
+	eventDesc?: string,
+	eventDate?: Date,
+	tags?: string[],
 	eventCompletion: boolean
 }
 
@@ -25,9 +25,9 @@ export type TEventPatch = {
 export type TEventEntity = {
 	eventId: number,
 	eventName: string,
-	eventDesc: string,
-	eventDate: Date,
-	tags: TTagEntity[],
+	eventDesc?: string,
+	eventDate?: Date,
+	tags?: TTagEntity[],
 	eventCompletion: boolean
 }
 
