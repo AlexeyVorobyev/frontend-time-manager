@@ -45,7 +45,6 @@ export const AlexInput: FC<IProps> = ({
 				multiline={multiline}
 				maxRows={maxRows}
 				InputProps={{
-					type: inputType,
 					endAdornment: hidden ? (
 						<InputAdornment position="end">
 							<IconButton
