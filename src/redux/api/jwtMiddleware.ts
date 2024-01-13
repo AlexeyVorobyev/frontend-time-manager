@@ -24,9 +24,9 @@ const triggerRefresh = () => {
 			}
 			else {
 				// @ts-ignore
-				setTokenAndExpiry(response as TRefreshResponse)
+				setTokenAndExpiry(res as TRefreshResponse)
 			}
-			// location.reload()
+			location.reload()
 		}
 	})
 }

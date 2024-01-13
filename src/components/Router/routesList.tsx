@@ -3,6 +3,7 @@ import {CustomizationPage, EPageType} from "../pages/СustomizationPage/Сustomi
 import {Navigate} from "react-router-dom";
 import {NotExistPage} from "../pages/NotExistPage/NotExistPage.tsx"
 import {CabinetPage} from "../pages/CabinetPage/CabinetPage.tsx"
+import {CalendarPage} from "../pages/CalendarPage/CalendarPage.tsx"
 
 export interface IRoute {
     path: string,
@@ -13,8 +14,17 @@ export interface IRoute {
 
 
 export const routesList: IRoute[] = [
-    {path: '/', name: 'Календарь', component: null},
-    {path: '*', name: 'Не существует', component: <NotExistPage/>},
+    {
+        path: '/',
+        name: 'Календарь',
+        component: <CalendarPage/>
+    },
+
+    {
+        path: '*',
+        name: 'Не существует',
+        component: <NotExistPage/>
+    },
 
     {
         path: 'cabinet',
