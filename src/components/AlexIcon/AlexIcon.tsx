@@ -3,7 +3,7 @@ import {EIconToNameMap, IconToNameMap} from "./AlexIconIconToNameMap.ts"
 
 interface IProps {
 	iconName: EIconToNameMap | `${EIconToNameMap}`
-	size: "small" | "inherit" | "large" | "medium"
+	size?: "small" | "inherit" | "large" | "medium"
 }
 
 export const AlexIcon: FC<IProps> = ({
